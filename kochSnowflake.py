@@ -5,6 +5,7 @@ t = turtle.Turtle()
 screen = turtle.Screen()
 screen.bgcolor('black')
 
+t.speed(10)
 t.hideturtle()
 t.pensize(1)
 
@@ -24,6 +25,18 @@ def getbranchpoints(p1, p2):
     m1 = midpoint(p1, m)
     m2 = midpoint(m, p2)
     return m1, m2
+
+
+def drawtriangle():
+    t.penup()
+    t.goto(-200, -100)
+    t.color('white')
+    t.pendown()
+
+    t.begin_fill()
+    t.goto(200, -100)
+    t.goto(0, 246.42)
+    t.end_fill()
 
 
 def dokoch(p1, p2, c, angle, heading, lv):
@@ -59,7 +72,11 @@ def dokoch(p1, p2, c, angle, heading, lv):
     dokoch(p3, b2, 'white', angle, heading - angle, lv - 1)
 
 
-dokoch(Point(-200, -100), Point(200, -100), 'white', 60, 0, 4)
+drawtriangle()
+
+dokoch(Point(-200, -100), Point(0, 246.42), 'white', 60, 60, 4)
+dokoch(Point(0, 246.42), Point(200, -100), 'white', 60, 300, 4)
+dokoch(Point(200, -100), Point(-200, -100), 'white', 60, 180, 4)
 
 turtle.update()
 screen.exitonclick()
